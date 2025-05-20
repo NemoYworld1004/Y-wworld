@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>さあ、旅に出よう！！</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+      background-attachment: fixed;
+    }
+    .neon-button {
+      background: #040101;
+      color: white;
+      text-shadow: 0 0 5px #fff, 0 0 10px #edff48;
+      box-shadow: 0 0 10px #310532, 0 0 20px #ebba19;
+    }
+    .neon-button:hover {
+      box-shadow: 0 0 20px #12130f, 0 0 30px #5decf6;
+    }
+    .neon-text {
+  text-shadow: 0 0 5px #020407, 0 0 10px #2a2605, 0 0 20px #2588b6;
+    }
+  </style>
+</head>
+<body class="text-white font-sans">
+  <video autoplay muted loop playsinline class="fixed top-0 left-0 w-full h-full object-cover -z-10">
+    <source src="/Users/nemoyuki/Documents/kon.mov" type="video/mov">
+  </video>
+
+  <header class="text-center py-10">
+    <h1 class="text-5xl font-sans font-extrabold">マップ選択</h1>
+    <p class="mb-4 ">スポットを選択しゲームを始めよう！</p>
+    <button onclick="downloadSelected()" class="neon-button mt-4 px-6 py-3 rounded-full text-lg">Download</button>
+  </header>
+
+  <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 px-6">
+    <div class="map-card relative">
+      <input type="checkbox" id="map1" data-url="https://example.com/kannrakutyou_game.zip" class="peer hidden">
+      <label for="map1" class="block cursor-pointer bg-white bg-opacity-10 backdrop-blur-sm p-4 rounded-xl shadow-md text-white transition-all duration-300 border-2 border-transparent peer-checked:border-white peer-checked:shadow-lg peer-checked:shadow-white/70">
+      <img src="https://s3-ap-northeast-1.amazonaws.com/thegate/2020/04/20/10/28/23/Dotonbori.png" alt="kannrakutyou" class="rounded-lg mb-3">
+      <h3 class="text-xl font-serif mb-1">館楽寵</h3> ＜Kannrakutyou＞
+      <p class="text-sm text-gray-300">主人公の住む都市（世界一の繁華街）</p>
+    </div>
+
+    <div class="map-card relative">
+      <input type="checkbox" id="map2" data-url="https://example.com/kannrakutyou_game.zip" class="peer hidden">
+      <label for="map2" class="block cursor-pointer bg-white bg-opacity-10 backdrop-blur-sm p-4 rounded-xl shadow-md text-white transition-all duration-300 border-2 border-transparent peer-checked:border-white peer-checked:shadow-lg peer-checked:shadow-white/70">
+      <img src="https://tabi-cam.com/wp-content/uploads/2020/10/IMG_1565.jpg" alt="rokuginnsou" class="rounded-lg mb-3">
+      <h3 class="text-xl font-serif mb-1">六銀創</h3> ＜Rokuginsou＞
+      <p class="text-sm text-gray-300">世界最大級のオフィス街</p>
+    </div>
+
+    <div class="map-card relative">
+      <input type="checkbox" id="map3" data-url="https://example.com/kannrakutyou_game.zip" class="peer hidden">
+      <label for="map3" class="block cursor-pointer bg-white bg-opacity-10 backdrop-blur-sm p-4 rounded-xl shadow-md text-white transition-all duration-300 border-2 border-transparent peer-checked:border-white peer-checked:shadow-lg peer-checked:shadow-white/70">
+      <img src="https://img.freepik.com/free-photo/yasaka-pagoda-sannen-zaka-street-kyoto-japan_335224-41.jpg?semt=ais_hybrid&w=740" alt="gennsoukyou" class="rounded-lg mb-3">
+      <h3 class="text-xl font-serif mb-1">幻想郷</h3> ＜Gensoukyou＞
+      <p class="text-sm text-gray-300">古都と呼ばれた和をモチーフにした場所</p>
+    </div>
+
+    <div class="map-card relative">
+      <input type="checkbox" id="map4" data-url="https://example.com/kannrakutyou_game.zip" class="peer hidden">
+      <label for="map4" class="block cursor-pointer bg-white bg-opacity-10 backdrop-blur-sm p-4 rounded-xl shadow-md text-white transition-all duration-300 border-2 border-transparent peer-checked:border-white peer-checked:shadow-lg peer-checked:shadow-white/70">
+      <img src="https://img-cdn.guide.travel.co.jp/c_1200_460/article/143/20160908133553/243CF7AFF90240F4A2C1528BB5E5A5CE.jpg" alt="ariakemura" class="rounded-lg mb-3">
+      <h3 class="text-xl font-serif mb-1">亜里朱村</h3> ＜Ariakemura＞
+      <p class="text-sm text-gray-300">祖先代々の（主人公）原因不明の廃村</p>
+    </div>
+  </section>
+
+  <footer class="text-center text-sm text-gray-400 mt-12 py-6">
+    &copy; 2025 NemoY Corp. All rights reserved.
+  </footer>
+
+  <script>
+    function downloadSelected() {
+      const checkboxes = document.querySelectorAll("input[type='checkbox']:checked");
+      if (checkboxes.length === 0) {
+        alert("マップを1つ以上選択してください");
+        return;
+      }
+      checkboxes.forEach(cb => {
+        const url = cb.dataset.url;
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = '';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      });
+    }
+  </script>
+
+</body>
+</html>
